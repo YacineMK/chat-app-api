@@ -1,20 +1,20 @@
 import mongoose from "mongoose";
-import * as dotenv from "dotenv";
-//import { app } from "../index.js";
-const port = process.env.PORT || 3000;
+import dotenv from "dotenv";
+import express from "express"; 
 
 
-dotenv.config()
+dotenv.config();
 
-export const dbs = (app) => {
- mongoose.connect(process.env.MONGO_URL)
-    .then( () => {
-        console.log("db is connect");
-        app.listen(port,()=>{
-            console.log("gg the server is running")
+
+export const dbs = (app , port) => {
+    mongoose.connect(process.env.MONGO_URL)
+        .then(() => {
+            console.log("db is connected");
+            app.listen(port, () => {
+                console.log(`Server is running on port ${port}`);
+            });
         })
-    })
-    .catch((err)=>{
-        console.log(err)
-    })
-}
+        .catch((err) => {
+            console.log(err);
+        });
+};
