@@ -21,4 +21,16 @@ export const userSchema = mongoose.Schema({
         unique: true ,
     },
     
-})
+});
+
+export const messageSchema = mongoose.Schema({
+    sender: {
+        type: String
+    },
+    responder: {
+        type: String
+    },
+    dateOfmessage: {
+        type: Date
+    }
+});
