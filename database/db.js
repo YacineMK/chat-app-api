@@ -6,8 +6,8 @@ import express from "express";
 dotenv.config();
 
 
-export const dbs = (app , port) => {
-    mongoose.connect(process.env.MONGO_URL)
+export const dbs = async (app , port) => {
+    await mongoose.connect(process.env.MONGO_URL)
         .then(() => {
             console.log("db is connected");
             app.listen(port, () => {
