@@ -16,7 +16,7 @@ app.get("/",(req,res)=> {
     res.status(200).send("hello World")
 })
 
-dbs(app,port);
+await dbs(app,port);
 
 Routese(app);
 

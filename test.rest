@@ -1,6 +1,11 @@
-#
-GET http://localhost:5000/
 
 #
 POST  http://localhost:5000/register
+{
+  "fullName": "ms",
+  "userName": "mami",
+  "email": "mami",
+  "password": "590456631"
+}
+
 
