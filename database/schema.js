@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
 
-export const userSchema = mongoose.Schema({
+export const userSchema = new mongoose.Schema({
     fullName : {
         type : String ,
         required : true ,
@@ -23,7 +23,7 @@ export const userSchema = mongoose.Schema({
     
 });
 
-export const messageSchema = mongoose.Schema({
+export const messageSchema = new mongoose.Schema({
     sender: {
         type: String
     },
