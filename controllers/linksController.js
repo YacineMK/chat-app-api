@@ -2,14 +2,18 @@ import bcrypt from "bcryptjs";
 import { coll } from "../database/model.js";
 
 export const login = (req, res) => {
-  
+  const {userName , password} = req.body ;
+  if (!userName || !password) {
+    res.status(400).json({ message: "All fields are required" })
+  }
+  const hachedPassword = bcrypt.hashSync(password,10);
 };
 
 export const register = (req, res) => {
-    console.log(req.body);
+    //console.log(req.body);
 
     const { fullName, userName, phoneNumber ,email, password } = req.body;
-    if (!fullName || !userName || !email || !password) {
+    if (!fullName || !userName || !phoneNumber || !email || !password) {
         return res.status(400).json({ message: "All fields are required" });
     }
 
