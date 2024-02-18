@@ -3,7 +3,7 @@ import { login, register } from "../controllers/linksController.js";
 
 export const Routese = (app) => {
     
-    app.post("/login" , login);
+    app.post("/api/login" , login);
 
-    app.post("/register" , register);
+    app.post("/api/register" , register);
 } 

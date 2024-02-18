@@ -13,7 +13,7 @@ app.use(cors());
 app.use(express.json());
 
 app.get("/",(req,res)=> {
-    res.status(200).send("hello World")
+    res.status(200).json("welcom to real chat api")
 })
 
 await dbs(app,port);
