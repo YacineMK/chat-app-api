@@ -3,21 +3,32 @@ import { coll } from "../database/model.js";
 import jsonwebtoken from "jsonwebtoken";
 
 export const login = async (req, res) => {
-  const {userName , password} = req.body ;
+  const { userName, password } = req.body;
   if (!userName || !password) {
-    res.status(400).json({ message: "All fields are required" })
+    res.status(400).json({ message: "All fields are required" });
+    return;
   }
-  const hachedPassword = bcrypt.hashSync(password,10);
-  const find = await coll.findOne(userName);
-  if (!find) {
-    res.status(400).json({error : "user not found "})
-  }
-  else if (await bcrypt.compare(find.password , hachedPassword)) {
-    const token = jsonwebtoken.sign()
-  } else {
-    res.status(401).send('Invalid password');
+
+  try {
+    const user = await coll.findOne({ username: userName });
+    if (!user) {
+      res.status(400).json({ error: "User not found" });
+      return;
+    }
+
+    const passwordMatch = await bcrypt.compare(password, user.password);
+    if (passwordMatch) {
+      const token = jsonwebtoken.sign({ username: user.username }, "your_secret_key");
+      res.json({ accessToken: token });
+    } else {
+      res.status(401).json({ error: "Invalid password" });
+    }
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: "Internal Server Error" });
   }
 };
+
 
 export const register = (req, res) => {
     //console.log(req.body);
