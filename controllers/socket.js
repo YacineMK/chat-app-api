@@ -5,9 +5,14 @@ const wsServer = http.createServer();
 const io = socketio(wsServer);
 const wsPort = 3000 ;
 
-io.on('connection',Socket =>{
+io.on('connection', socket =>{
     console.log('ws');
-    Socket.emit('message', "welcome in chatsocket");
+    //Socket.emit('message', "welcome in chatsocket"); one client
+    //io.emit() broadcast all clients
+    socket.broadcast.emit('message',"a user join chat")
+    socket.on('disconnect',()=>{
+       io.emit() 
+    })
 })
 
 wsServer.listen(wsPort,()=>{
