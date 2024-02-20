@@ -1,8 +1,15 @@
-const { Socket } = require("socket.io");
+const http = require('http');
+const socketio = require('socket.io');
 
-const io = require(Socket)(8080)
+const wsServer = http.createServer();
+const io = socketio(wsServer);
+const wsPort = 3000 ;
 
-io.on('connect'),(socket) => {
+io.on('connection',Socket =>{
+    console.log('ws');
+    Socket.emit('message', "welcome in chatsocket");
+})
 
-}
-
+wsServer.listen(wsPort,()=>{
+    console.log(`ws sever are runnig in ${wsPort}`)
+})
