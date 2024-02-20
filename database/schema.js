@@ -24,16 +24,6 @@ export const userSchema = new mongoose.Schema({
     
 });
 
-export const messageSchema = new mongoose.Schema({
-    sender: {
-        type: String
-    },
-    responder: {
-        type: String
-    },
-    dateOfmessage: {
-        type: Date
-    }
-});
+
 
 
